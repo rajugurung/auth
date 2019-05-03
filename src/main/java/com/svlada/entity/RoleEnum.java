@@ -7,7 +7,7 @@ package com.svlada.entity;
  *
  * Aug 16, 2016
  */
-public enum Role {
+public enum RoleEnum {
     ADMIN, PREMIUM_MEMBER, MEMBER;
     
     public String authority() {

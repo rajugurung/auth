@@ -8,6 +8,9 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +23,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USER_ROLE")
 public class UserRole {
+//	private Long userId;
+//	private Long roleId;
+//
+//	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="USER_ID")
+//	private User user;
+	
     @Embeddable
     public static class Id implements Serializable {
         private static final long serialVersionUID = 1322120000551624359L;
@@ -29,11 +40,11 @@ public class UserRole {
         
         @Enumerated(EnumType.STRING)
         @Column(name = "ROLE")
-        protected Role role;
+        protected RoleEnum role;
         
         public Id() { }
 
-        public Id(Long userId, Role role) {
+        public Id(Long userId, RoleEnum role) {
             this.userId = userId;
             this.role = role;
         }
@@ -44,9 +55,11 @@ public class UserRole {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", insertable=false, updatable=false)
-    protected Role role;
+    protected RoleEnum role;
 
-    public Role getRole() {
+    public RoleEnum getRole() {
         return role;
     }
+    
+    
 }
