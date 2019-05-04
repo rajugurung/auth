@@ -25,20 +25,16 @@ public class User {
     @Column(name="password")
     private String password;
     
-    @OneToMany
-    @JoinColumn(name="APP_USER_ID", referencedColumnName="ID")
-    private List<UserRole> roles;
-    
     @OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
     private List<UserRole2> roles2;
     
     public User() { }
     
-    public User(Long id, String username, String password, List<UserRole> roles) {
+    public User(Long id, String username, String password, List<UserRole2> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.roles2 = roles;
     }
 
     public Long getId() {
@@ -53,7 +49,12 @@ public class User {
         return password;
     }
 
-    public List<UserRole> getRoles() {
-        return roles;
-    }
+	public List<UserRole2> getRoles2() {
+		return roles2;
+	}
+
+	public void setRoles2(List<UserRole2> roles2) {
+		this.roles2 = roles2;
+	}
+    
 }

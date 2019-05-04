@@ -51,11 +51,14 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");
         }
 
-        if (user.getRoles() == null) throw new InsufficientAuthenticationException("User has no roles assigned");
+        if (user.getRoles2() == null) throw new InsufficientAuthenticationException("User has no roles assigned");
         
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(authority -> new SimpleGrantedAuthority(authority.getRole().authority()))
-                .collect(Collectors.toList());
+//        List<GrantedAuthority> authorities = user.getRoles().stream()
+//                .map(authority -> new SimpleGrantedAuthority(authority.getRole().authority()))
+//                .collect(Collectors.toList());
+        //TODO 
+        List<GrantedAuthority> authorities = user.getRoles2().stream().map(authority -> new SimpleGrantedAuthority(authority.getRole().getRole()))
+        	.collect(Collectors.toList());
         
         UserContext userContext = UserContext.create(user.getUsername(), authorities);
         
@@ -66,4 +69,5 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
     }
+    
 }
