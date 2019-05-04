@@ -34,13 +34,6 @@ import com.svlada.security.model.token.JwtTokenFactory;
 import com.svlada.security.model.token.RawAccessJwtToken;
 import com.svlada.security.model.token.RefreshToken;
 
-/**
- * RefreshTokenEndpoint
- * 
- * @author vladimir.stankovic
- *
- * Aug 17, 2016
- */
 @RestController
 public class RefreshTokenController {
     @Autowired private JwtTokenFactory tokenFactory;

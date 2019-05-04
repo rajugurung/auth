@@ -27,6 +27,9 @@ public class UserRole {
     @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID", insertable=false, updatable=false)
 	private Role role;
 
+	public UserRole() {
+	}
+
 	public UserRole(Long id, User user, Role role) {
 		this.id = id;
 		this.user = user;
