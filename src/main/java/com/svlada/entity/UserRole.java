@@ -24,25 +24,27 @@ public class UserRole {
 	private User user;
 	
 	@OneToOne
-    @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID", insertable=false, updatable=false)
 	private Role role;
 
+	public UserRole(Long id, User user, Role role) {
+		this.id = id;
+		this.user = user;
+		this.role = role;
+	}
+	
 	public Long getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Role getRole() {
 		return role;
 	}

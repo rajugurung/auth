@@ -1,5 +1,6 @@
 package com.svlada.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,9 +26,19 @@ public class User {
     private String password;
     
     @OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
-    private List<UserRole> roles;
+    private List<UserRole> roles = new ArrayList<>();
     
     public User() { }
+    
+    public void addUserRole(UserRole userRole) {
+		this.roles.add(userRole);
+		userRole.setUser(this);
+	}
+    public void removeUserRole(UserRole userrole) {
+    	userrole.setUser(null);
+    	this.roles.remove(userrole);
+    	
+    }
     
     public User(Long id, String username, String password, List<UserRole> roles) {
         this.id = id;
