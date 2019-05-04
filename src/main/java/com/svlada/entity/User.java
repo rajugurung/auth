@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,15 +25,15 @@ public class User {
     private String password;
     
     @OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
-    private List<UserRole2> roles2;
+    private List<UserRole> roles;
     
     public User() { }
     
-    public User(Long id, String username, String password, List<UserRole2> roles) {
+    public User(Long id, String username, String password, List<UserRole> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.roles2 = roles;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -49,12 +48,12 @@ public class User {
         return password;
     }
 
-	public List<UserRole2> getRoles2() {
-		return roles2;
+	public List<UserRole> getRoles() {
+		return roles;
 	}
 
-	public void setRoles2(List<UserRole2> roles2) {
-		this.roles2 = roles2;
+	public void setRoles(List<UserRole> roles) {
+		this.roles = roles;
 	}
     
 }
