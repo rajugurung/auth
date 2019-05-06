@@ -6,12 +6,29 @@ demo.security.jwt:
   tokenIssuer: http://svlada.com
   tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
   
-spring.datasource:
-  url: "jdbc:h2:mem:testdb"
-  driverClassName: org.h2.Driver
-  username: sa
-  password: "sa"
-  data: "classpath*:data.sql"
-spring.jpa:
-  database-platform: org.hibernate.dialect.H2Dialect
-spring.h2.console.enabled: true
+# spring.datasource:
+#   url: "jdbc:h2:mem:testdb"
+#   driverClassName: org.h2.Driver
+#   username: sa
+#   password: "sa"
+#   data: "classpath*:data.sql"
+# spring.jpa:
+#   database-platform: org.hibernate.dialect.H2Dialect
+# spring.h2.console.enabled: true
+
+## PostgreSQL
+spring:
+   datasource:
+      url: "jdbc:postgresql://localhost:5432/rental"
+      username: postgres
+      password: Dhokakhol7!!
+   
+   hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      
+   jpa:
+      show-sql: true
+      properties.hibernate.default_schema: rental
+      
+

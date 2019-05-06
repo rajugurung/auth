@@ -1,48 +1,101 @@
 package com.svlada.entity;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
+
+/**
+ * The persistent class for the "ROLE" database table.
+ * 
+ */
 @Entity
-public class Role {
+@Table(name="\"ROLE\"")
+@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+public class Role implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	@Id @Column(name="ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name="role")
-	private String role;
-	
-	@OneToOne(mappedBy = "role", fetch=FetchType.LAZY)
-	private UserRole userRole;
+	@Id
+	@Column(name="\"ID\"")
+	private Integer id;
 
-	public Long getId() {
-		return id;
+	@Column(name="\"DESCRIPTION\"")
+	private String description;
+
+	@Column(name="\"NAME\"")
+	private String name;
+
+	//bi-directional many-to-one association to UserRole
+//	@OneToMany(mappedBy="role")
+//	private List<UserRole> userRoles;
+	
+	@ManyToMany(mappedBy="roles")
+	private Set<User> users = new HashSet<>();
+
+	public Role() {
 	}
 
-	public void setId(Long id) {
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public UserRole getUserRole() {
-		return userRole;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
+	public void setName(String name) {
+		this.name = name;
 	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+//	public List<UserRole> getUserRoles() {
+//		return this.userRoles;
+//	}
+//
+//	public void setUserRoles(List<UserRole> userRoles) {
+//		this.userRoles = userRoles;
+//	}
+
+//	public UserRole addUserRole(UserRole userRole) {
+//		getUserRoles().add(userRole);
+//		userRole.setRole(this);
+//
+//		return userRole;
+//	}
+//
+//	public UserRole removeUserRole(UserRole userRole) {
+//		getUserRoles().remove(userRole);
+//		userRole.setRole(null);
+//
+//		return userRole;
+//	}
 	
+
 }

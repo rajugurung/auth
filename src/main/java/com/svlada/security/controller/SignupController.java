@@ -1,5 +1,7 @@
 package com.svlada.security.controller;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +30,21 @@ public class SignupController {
 	@PostMapping
 	public void signUp(@RequestBody User user) {
 		String encodedPwd = pwdEncoder.encode(user.getPassword());
+//		Role role = new Role();
+//		role.setId(1);
+//		role.setName("ADMIN");
+//		UserRole userRole = new UserRole();
+//		userRole.setRoleId(1);
+//		user.addUserRole(userRole);
+//		User userToSave = new User(encodedPwd, user.getUserName(), Arrays.asList(userRole));
+		
 		Role role = new Role();
-		role.setId(1l);
-		role.setRole("ADMIN");
-		UserRole userRole = new UserRole(null, user, role);
-		user.addUserRole(userRole);
-		User savedUser =  userRepo.save(user);
+		role.setName("ADMIN");
+		role.setId(1);
+		User userToSave = new User(encodedPwd, user.getUserName(), null);
+		userToSave.setRoles(new HashSet<>(Arrays.asList(role)));
+		User savedUser =  userRepo.save(userToSave);
+		System.out.println(savedUser.toString());
 	}
 	
 }

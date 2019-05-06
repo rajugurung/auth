@@ -1,60 +1,87 @@
 package com.svlada.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
 
+
+/**
+ * The persistent class for the "USER_ROLE" database table.
+ * 
+ */
 @Entity
 @Table(name="USER_ROLE")
-public class UserRole {
+@NamedQuery(name="UserRole.findAll", query="SELECT u FROM UserRole u")
+public class UserRole implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name="\"ID\"")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_role_generator")
+	@SequenceGenerator(name="user_role_generator", sequenceName = "user_role_sequence")
+	private Integer id;
 
-	@Id @Column(name="ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-	private User user;
-	
-	@OneToOne
-    @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID", insertable=false, updatable=false)
-	private Role role;
+	@Column(name="\"ROLE_ID\"")
+	private Integer roleId;
+
+	@Column(name="\"USER_ID\"")
+	private Integer userId;
+
+	//bi-directional many-to-one association to Role
+//	@ManyToOne
+//	@JoinColumn(name = "ROLE_ID", insertable=false, updatable=false)
+//	private Role role;
+//
+//	//bi-directional many-to-one association to User
+//	@ManyToOne
+//	@JoinColumn(name = "USER_ID", insertable=false, updatable=false)
+//	private User user;
 
 	public UserRole() {
 	}
-
-	public UserRole(Long id, User user, Role role) {
+	public UserRole(Integer id, Integer roleId, Integer userId) {
 		this.id = id;
-		this.user = user;
-		this.role = role;
+		this.roleId = roleId;
+		this.userId = userId;
 	}
-	
-	public Long getId() {
-		return id;
+
+	public Integer getId() {
+		return this.id;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public void setId(Long id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Role getRole() {
-		return role;
+
+	public Integer getRoleId() {
+		return this.roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
-	
+	public Integer getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+//	public Role getRole() {
+//		return this.role;
+//	}
+//
+//	public void setRole(Role role) {
+//		this.role = role;
+//	}
+//
+//	public User getUser() {
+//		return this.user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+
 }

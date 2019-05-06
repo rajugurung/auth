@@ -10,6 +10,6 @@ import com.svlada.entity.User;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query("select u from User u left join fetch u.roles r where u.username=:username")
-    public Optional<User> findByUsername(@Param("username") String username);
+    @Query("select u from User u left join fetch u.roles r where u.userName=:userName")
+    public Optional<User> findByUsername(@Param("userName") String userName);
 }
