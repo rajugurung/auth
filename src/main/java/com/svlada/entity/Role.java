@@ -2,7 +2,6 @@ package com.svlada.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -33,10 +32,6 @@ public class Role implements Serializable {
 	@Column(name="\"NAME\"")
 	private String name;
 
-	//bi-directional many-to-one association to UserRole
-//	@OneToMany(mappedBy="role")
-//	private List<UserRole> userRoles;
-	
 	@ManyToMany(mappedBy="roles")
 	private Set<User> users = new HashSet<>();
 
@@ -75,27 +70,9 @@ public class Role implements Serializable {
 		this.users = users;
 	}
 
-//	public List<UserRole> getUserRoles() {
-//		return this.userRoles;
-//	}
-//
-//	public void setUserRoles(List<UserRole> userRoles) {
-//		this.userRoles = userRoles;
-//	}
-
-//	public UserRole addUserRole(UserRole userRole) {
-//		getUserRoles().add(userRole);
-//		userRole.setRole(this);
-//
-//		return userRole;
-//	}
-//
-//	public UserRole removeUserRole(UserRole userRole) {
-//		getUserRoles().remove(userRole);
-//		userRole.setRole(null);
-//
-//		return userRole;
-//	}
-	
+	@Override
+	public String toString() {
+		return "Role [name=" + name + ", description=" + description + "]";
+	}
 
 }

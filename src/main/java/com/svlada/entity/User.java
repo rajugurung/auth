@@ -40,10 +40,6 @@ public class User implements Serializable {
 	@Column(name="\"USER_NAME\"")
 	private String userName;
 
-	//bi-directional many-to-one association to UserRole
-//	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
-//	private List<UserRole> userRoles = new ArrayList<>();
-	
 	@ManyToMany
 	@JoinTable(name="user_role"
 			, joinColumns={@JoinColumn(name="user_id")}
@@ -54,7 +50,7 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String password, String userName, List<UserRole> userRoles) {
+	public User(String password, String userName) {
 		this.password = password;
 		this.userName = userName;
 	}
@@ -84,28 +80,6 @@ public class User implements Serializable {
 		this.userName = userName;
 	}
 
-//	public List<UserRole> getUserRoles() {
-//		return this.userRoles;
-//	}
-//
-//	public void setUserRoles(List<UserRole> userRoles) {
-//		this.userRoles = userRoles;
-//	}
-
-//	public UserRole addUserRole(UserRole userRole) {
-//		getUserRoles().add(userRole);
-//		userRole.setUser(this);
-//
-//		return userRole;
-//	}
-//
-//	public UserRole removeUserRole(UserRole userRole) {
-//		getUserRoles().remove(userRole);
-//		userRole.setUser(null);
-//
-//		return userRole;
-//	}
-	
 	public void addRole(Role role) {
         roles.add(role);
         role.getUsers().add(this);
@@ -116,7 +90,6 @@ public class User implements Serializable {
         role.getUsers().remove(this);
     }
  
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
