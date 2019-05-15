@@ -9,13 +9,6 @@ import com.rental.entity.User;
 import com.rental.repository.UserRepository;
 import com.rental.security.UserService;
 
-/**
- * Mock implementation.
- * 
- * @author vladimir.stankovic
- *
- * Aug 4, 2016
- */
 @Service
 public class DatabaseUserService implements UserService {
     private final UserRepository userRepository;
