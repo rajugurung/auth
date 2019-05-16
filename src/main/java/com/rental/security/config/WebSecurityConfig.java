@@ -111,4 +111,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(buildJwtTokenAuthenticationProcessingFilter(permitAllEndpointList,
                 API_ROOT_URL), UsernamePasswordAuthenticationFilter.class);
     }
+    
+
 }

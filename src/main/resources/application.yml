@@ -1,4 +1,4 @@
-server.port: 9966
+server.port: 8443
 spring.profiles: default
 demo.security.jwt:
   tokenExpirationTime: 1 # Number of minutes
@@ -41,6 +41,6 @@ server.ssl:
 # The alias mapped to the certificate
    key-alias: tomcat
    
-security.require-ssl: true     
+#security.require-ssl: true     
       
 
